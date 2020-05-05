@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+    </head>
+    <body>
+    
+    <form action="/newpost" method="POST">
+        Tytuł: <input type="text" name="title" size="150"/><br></br>
+    Treść:
+    <textarea name="content" cols="100" rows="5"></textarea><br></br>
+    <input type="submit" value="Dodaj wpis" />
+    </form>
+    
+        <h2>Posty</h2>
+    <div th:each="post: ${allPosts}" >
+       
+        <h2 th:text='${post.title}'></h2>
+        <p th:text="${post.content}"></p>
+        <form action="/deletepost" method="POST">
+            <input name="id" type="hidden" th:value="${post.id}" />
+            
+                <input type="submit" value="Usuń" />
+        </form>
+        
+    </div>  
+   
+    </body>
+</html>
